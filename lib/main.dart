@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'auth/sign_in.dart';
+import 'package:odonto/src/pages/auth/sign_in.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white.withAlpha(200)),
       debugShowCheckedModeBanner: false,
       home: const SignIn(),
     );

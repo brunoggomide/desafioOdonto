@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:odonto/auth/sign_up.dart';
+import 'package:odonto/src/pages/auth/sign_up.dart';
+import '../base/base_screen.dart';
 import 'components/custom_text_field.dart';
+import 'components/forgot_password.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -72,13 +74,13 @@ class SignIn extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18))),
                         onPressed: () {
-                          // Navigator.of(context).pushReplacement(
-                          //   MaterialPageRoute(
-                          //     builder: ((c) {
-                          //       return const BaseScreen();
-                          //     }),
-                          //   ),
-                          // );
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: ((c) {
+                                return const BaseScreen();
+                              }),
+                            ),
+                          );
                         },
                         child: const Text(
                           'Entrar',
@@ -90,7 +92,13 @@ class SignIn extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                return ForgotPassword(email: '');
+                              });
+                        },
                         child: const Text(
                           'Esqueceu a senha?',
                           style: TextStyle(color: Colors.red),
