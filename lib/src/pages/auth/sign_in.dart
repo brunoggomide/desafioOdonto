@@ -19,27 +19,19 @@ class SignIn extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  //NOME DO APP
-                  Text.rich(
-                    TextSpan(
-                        style: TextStyle(
-                          fontSize: 35,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'Glossário de Oclusão',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ]),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(30),
+                    child: const Text(
+                      'Glossário de Oclusão',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                      ),
+                    ),
                   ),
-                ],
-              )),
+                ),
+              ),
               // FORMULARIO
               Container(
                 padding: const EdgeInsets.symmetric(

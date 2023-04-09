@@ -18,14 +18,11 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: const Text.rich(
-          TextSpan(
-            style: TextStyle(fontSize: 26),
-            children: [
-              TextSpan(
-                  text: 'Glossário de Oclusão',
-                  style: TextStyle(color: Colors.black)),
-            ],
+        title: const Text(
+          'Glossário de Oclusão',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 26,
           ),
         ),
       ),

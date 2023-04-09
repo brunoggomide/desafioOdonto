@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odonto/src/pages/infos/info.dart';
 
 import '../home/home.dart';
 
@@ -22,9 +23,8 @@ class _BaseScreenState extends State<BaseScreen> {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           const Home(),
-          // Container(color: Colors.yellow),
-          Container(color: Colors.brown),
-          Container(color: Colors.purple),
+          const Info(),
+          Container(color: Colors.white),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -44,7 +44,8 @@ class _BaseScreenState extends State<BaseScreen> {
               icon: Icon(Icons.home_outlined), label: 'Home'),
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.note_add), label: 'Cadastro'),
-          BottomNavigationBarItem(icon: Icon(Icons.help), label: 'Sobre'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.info_outline), label: 'Sobre'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_outline), label: 'Perfil'),
         ],
