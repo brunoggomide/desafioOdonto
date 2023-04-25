@@ -1,16 +1,14 @@
-# odonto
+# Glossário de Oclusão
 
-A new Flutter project.
+Este projeto foi desenvolvido como parte de um trabalho acadêmico da 6ª etapa do curso de Engenharia de Software da Unaerp pelos alunos Bruno Gabriel Gomide e Nelson José Dias Mello.
 
-## Getting Started
+O Glossário de Oclusão é um aplicativo mobile desenvolvido em Flutter (versão 2.10.5) para oferecer uma ferramenta de busca e inclusão de termos da Oclusão Dentária. O aplicativo é direcionado para estudantes e professores do curso de Odontologia da Unaerp, a fim de aprimorar seus conhecimentos sobre o tema, disponibilizando uma vasta gama de termos técnicos e seus respectivos significados, além de permitir que os professores adicionem exercícios para os alunos resolverem.
 
-This project is a starting point for a Flutter application.
+## Requisito para execução
 
-A few resources to get you started if this is your first Flutter project:
+Esse aplicativo foi desenvolvido na versão 2.10.5 do Flutter.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Alunos envolvidos
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Bruno Gabriel Gomide - 835550
+Nelson Jose Dias Mello - 835644

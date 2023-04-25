@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class ItemModel {
   String name;
   String description;
