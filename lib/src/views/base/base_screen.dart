@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odonto/src/pages/infos/info.dart';
+import 'package:odonto/src/views/infos/info.dart';
 
 import '../home/home.dart';
 

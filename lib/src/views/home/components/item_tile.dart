@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odonto/src/models/item_model.dart';
-import 'package:odonto/src/pages/descriptions/description_screen.dart';
+import 'package:odonto/src/views/descriptions/description_screen.dart';
 
 class ItemTile extends StatelessWidget {
   const ItemTile({

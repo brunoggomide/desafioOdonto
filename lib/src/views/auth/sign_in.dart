@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odonto/src/pages/auth/sign_up.dart';
+import 'package:odonto/src/views/auth/sign_up.dart';
 import '../base/base_screen.dart';
 import 'components/custom_text_field.dart';
 import 'components/forgot_password.dart';

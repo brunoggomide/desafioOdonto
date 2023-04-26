@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odonto/src/pages/auth/sign_in.dart';
+import 'package:odonto/src/views/auth/sign_in.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:odonto/src/config/app_data.dart' as appData;
-import 'package:odonto/src/pages/home/components/item_tile.dart';
+import 'package:odonto/src/views/home/components/item_tile.dart';
+
+import '../../models/item_model.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,6 +12,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String _searchText = '';
+
+  List<ItemModel> searchItems() {
+    return appData.items.where((item) {
+      final nameLower = item.name.toLowerCase();
+      final searchTextLower = _searchText.toLowerCase();
+      return nameLower.contains(searchTextLower);
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +62,16 @@ class _HomeState extends State<Home> {
                   size: 20,
                 ),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(60),
-                    borderSide:
-                        const BorderSide(width: 0, style: BorderStyle.none)),
+                  borderRadius: BorderRadius.circular(60),
+                  borderSide:
+                      const BorderSide(width: 0, style: BorderStyle.none),
+                ),
               ),
+              onChanged: (value) {
+                setState(() {
+                  _searchText = value;
+                });
+              },
             ),
           ),
 
@@ -61,16 +79,14 @@ class _HomeState extends State<Home> {
             child: ListView.builder(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               physics: const BouncingScrollPhysics(),
-              itemCount: appData.items.length,
+              itemCount: searchItems().length,
               itemBuilder: (context, index) {
-                return ItemTile(item: appData.items[index]);
+                return ItemTile(item: searchItems()[index]);
               },
             ),
           )
         ],
       ),
-
-      //list
     );
   }
 }
