@@ -70,7 +70,9 @@ class ForgotPassword extends StatelessWidget {
                       color: Colors.green,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   child: const Text(
                     'Recuperar',
                     style: TextStyle(

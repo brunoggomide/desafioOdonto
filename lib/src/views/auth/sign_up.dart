@@ -72,7 +72,9 @@ class SignUp extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(18),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                             child: const Text(
                               "Cadastrar Usuário",
                               style: TextStyle(fontSize: 18),
