@@ -7,7 +7,8 @@ class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
   group('Info Widget Test', () {
-    testWidgets('should render app bar', (WidgetTester tester) async {
+    testWidgets('renderização de tela com sucesso',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Info(),
@@ -18,7 +19,7 @@ void main() {
       expect(find.text('Informações do App'), findsOneWidget);
     });
 
-    testWidgets('should render text', (WidgetTester tester) async {
+    testWidgets('textos presentes na tela', (WidgetTester tester) async {
       final mockContext = MockBuildContext();
 
       await tester.pumpWidget(

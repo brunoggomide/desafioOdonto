@@ -17,24 +17,24 @@ void main() {
     mockObserver = MockNavigatorObserver();
   });
 
-  testWidgets('ForgotPassword page renders correctly',
+  testWidgets('A tela de recuperar senha foi renderizada corretamente',
       (WidgetTester tester) async {
-    // Build the ForgotPassword page
+    // Build da tela de esqueceu a senha
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: ForgotPassword(email: 'user@example.com'),
+          body: ForgotPassword(email: 'teste@unaerp.br'),
         ),
         navigatorObservers: [mockObserver],
       ),
     );
 
-    // Verify that the page contains the email field and the recover button
+    // verifica os campos de e-mail e botão de recuperar
     expect(find.byType(CustomTextField), findsOneWidget);
     expect(find.widgetWithText(ElevatedButton, 'Recuperar'), findsOneWidget);
   });
 
-  testWidgets('ForgotPassword recover button navigates to previous page',
+  testWidgets('Botão de recuperar funciona todas as ações',
       (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
         home: ForgotPassword(
@@ -42,11 +42,11 @@ void main() {
         ),
         navigatorObservers: [mockObserver]));
 
-    // Tap the recover button
+    // clica no botão de recuperar
     await tester.tap(find.text('Recuperar'));
     await tester.pumpAndSettle();
 
-    // Verify that the previous page is now visible
+    // verifica se o botão realiza a função desejada
     verifyNever(mockObserver.didPop(signInRoute, any));
   });
 }

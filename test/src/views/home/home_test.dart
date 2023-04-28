@@ -20,7 +20,8 @@ void main() {
     ];
   });
 
-  testWidgets('Test Home widget', (tester) async {
+  testWidgets('Teste da tela home, listagem e pesquisa de termos',
+      (tester) async {
     // Renderizar a tela
     await tester.pumpWidget(const MaterialApp(
       home: Home(),

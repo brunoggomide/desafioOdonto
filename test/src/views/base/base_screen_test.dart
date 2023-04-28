@@ -16,8 +16,7 @@ void main() {
     baseScreen = const BaseScreen();
   });
 
-  testWidgets('BaseScreen should render and navigate correctly',
-      (WidgetTester tester) async {
+  testWidgets('Tela renderizada corretamente', (WidgetTester tester) async {
     // Build the widget tree
     await tester.pumpWidget(MaterialApp(home: baseScreen));
 

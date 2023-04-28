@@ -19,7 +19,7 @@ void main() {
     navigatorObserver = MockNavigatorObserver();
   });
 
-  testWidgets('renders page correctly', (tester) async {
+  testWidgets('tela renderizada com sucesso', (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: DescriptionScreen(item: item),
     ));
@@ -29,7 +29,7 @@ void main() {
     expect(find.byIcon(Icons.arrow_back_ios), findsOneWidget);
   });
 
-  testWidgets('navigates back when back button is pressed', (tester) async {
+  testWidgets('botão de voltar funcionando corretamente', (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: DescriptionScreen(item: item),
       navigatorObservers: [navigatorObserver],
