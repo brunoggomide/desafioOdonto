@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:odonto/src/views/auth/components/custom_text_field.dart';
+import 'package:odonto/src/views/auth/components/forgot_password.dart';
 import 'package:odonto/src/views/auth/sign_in.dart';
 import 'package:odonto/src/views/auth/sign_up.dart';
 import 'package:odonto/src/views/base/base_screen.dart';
@@ -16,6 +17,12 @@ void main() {
 
   final signUpRoute = MaterialPageRoute(builder: (c) {
     return SignUp();
+  });
+
+  final forgotPasswordRoute = MaterialPageRoute(builder: (c) {
+    return ForgotPassword(
+      email: 'teste@unaerp.br',
+    );
   });
 
   setUp(() {
@@ -60,5 +67,19 @@ void main() {
     // Verifica se a tela principal foi carregada
     verifyNever(mockObserver.didPush(signUpRoute, any));
     expect(find.byType(BaseScreen), findsOneWidget);
+  });
+
+  testWidgets('Testa navegação para a tela de recuperar senha',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+        MaterialApp(home: const SignIn(), navigatorObservers: [mockObserver]));
+
+    // Toca no botão "Entrar"
+    await tester.tap(find.text('Esqueceu a senha?'));
+    await tester.pumpAndSettle();
+
+    // Verifica se a tela principal foi carregada
+    verifyNever(mockObserver.didPush(forgotPasswordRoute, any));
+    expect(find.byType(ForgotPassword), findsOneWidget);
   });
 }
