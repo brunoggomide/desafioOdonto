@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>993159233696-bp1pp6550jai67bct49p09oq62l2vcan.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.993159233696-bp1pp6550jai67bct49p09oq62l2vcan</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBxFgItZ1uumptgAM_TTMgBGzGPm7RHpk4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>993159233696</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.odonto</string>
+	<key>PROJECT_ID</key>
+	<string>desafio-odonto</string>
+	<key>STORAGE_BUCKET</key>
+	<string>desafio-odonto.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:993159233696:ios:80a519cbacaa24222f89c5</string>
+</dict>
+</plist>

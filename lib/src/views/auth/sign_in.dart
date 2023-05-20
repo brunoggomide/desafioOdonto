@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:odonto/src/views/auth/sign_up.dart';
-import '../base/base_screen.dart';
-import 'components/custom_text_field.dart';
+import '../../controllers/auth/auth_controller.dart';
 import 'components/forgot_password.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  SignIn({Key? key}) : super(key: key);
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  var txtEmail = TextEditingController();
+
+  var txtSenha = TextEditingController();
+
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +58,44 @@ class SignIn extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     //EMAIL
-                    const CustomTextField(
-                      icon: Icons.email,
-                      label: 'Email',
+                    TextFormField(
+                      autofocus: true,
+                      controller: txtEmail,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.email),
+                        labelText: 'E-mail',
+                        isDense: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
                     ),
+                    const SizedBox(height: 15),
                     // SENHA
-                    const CustomTextField(
-                      icon: Icons.lock,
-                      label: 'Senha',
-                      isSecret: true,
+                    TextFormField(
+                      autofocus: true,
+                      controller: txtSenha,
+                      obscureText: isObscure,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isObscure = !isObscure;
+                            });
+                          },
+                          icon: Icon(isObscure
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                        ),
+                        labelText: 'Senha',
+                        isDense: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
                     ),
+                    const SizedBox(height: 15),
                     // ENTRAR
                     SizedBox(
                       height: 50,
@@ -66,13 +104,31 @@ class SignIn extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18))),
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: ((c) {
-                                return const BaseScreen();
-                              }),
-                            ),
-                          );
+                          String email = txtEmail.text;
+                          String senha = txtSenha.text;
+
+                          if (email.isNotEmpty && senha.isNotEmpty) {
+                            if (email.endsWith('@sou.unaerp.edu.br') ||
+                                email.endsWith('@unaerp.br')) {
+                              AuthController().login(context, email, senha);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.red[300],
+                                  content: const Text(
+                                      'E-mail inválido. Use um e-mail da Unaerp.'),
+                                ),
+                              );
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Colors.red[300],
+                                content: const Text(
+                                    'Preencha todos os campos obrigatórios.'),
+                              ),
+                            );
+                          }
                         },
                         child: const Text(
                           'Entrar',
@@ -88,7 +144,7 @@ class SignIn extends StatelessWidget {
                           showDialog(
                               context: context,
                               builder: (_) {
-                                return ForgotPassword(email: '');
+                                return ForgotPassword(email: txtEmail.text);
                               });
                         },
                         child: const Text(

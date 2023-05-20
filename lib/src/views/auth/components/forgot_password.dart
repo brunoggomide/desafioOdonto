@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'custom_text_field.dart';
+
+import '../../../controllers/auth/auth_controller.dart';
 
 class ForgotPassword extends StatelessWidget {
   final emailController = TextEditingController();
@@ -54,10 +55,19 @@ class ForgotPassword extends StatelessWidget {
                 ),
 
                 // Campo de email
-                const CustomTextField(
-                  icon: Icons.email,
-                  label: 'Email',
+                TextFormField(
+                  autofocus: true,
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.email),
+                    labelText: 'E-mail',
+                    isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ),
                 ),
+                const SizedBox(height: 15),
 
                 // Confirmar
                 ElevatedButton(
@@ -65,13 +75,32 @@ class ForgotPassword extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    side: const BorderSide(
-                      width: 2,
-                      color: Colors.green,
-                    ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    String email = emailController.text;
+
+                    if (email.isNotEmpty) {
+                      if (email.endsWith('@sou.unaerp.edu.br') ||
+                          email.endsWith('@unaerp.br')) {
+                        AuthController().esqueceuSenha(context, email);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red[300],
+                            content: const Text(
+                                'E-mail inválido. Use um e-mail da Unaerp.'),
+                          ),
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.red[300],
+                          content: const Text(
+                              'Preencha todos os campos obrigatórios.'),
+                        ),
+                      );
+                    }
                   },
                   child: const Text(
                     'Recuperar',

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "993159233696",
+    "project_id": "desafio-odonto",
+    "storage_bucket": "desafio-odonto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993159233696:android:d026831a149372642f89c5",
+        "android_client_info": {
+          "package_name": "com.example.odonto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993159233696-hc4kuaub0masg1u4uejopuelhkn26kfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAZuJAO8-k0fDmLCvIdCV0AqoLcipnkUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993159233696-hc4kuaub0masg1u4uejopuelhkn26kfp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

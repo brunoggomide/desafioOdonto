@@ -38,7 +38,7 @@ class Info extends StatelessWidget {
               child: Container(
                 alignment: Alignment.bottomLeft,
                 child: const Text(
-                  'Desenvolvido por: Bruno Gomide e Nelson Mello\nApoio de: Rodrigo Plotze, Carlos Alves e Fabiano\nE-mail para contato: bruno.gomide@sou.unaerp.edu.br',
+                  'Desenvolvido por: Bruno Gomide\nApoio de: Rodrigo Plotze, Carlos Alves e Fabiano\nE-mail para contato: bruno.gomide@sou.unaerp.edu.br',
                   textAlign: TextAlign.left,
                   style: TextStyle(height: 1.5, fontSize: 12),
                 ),

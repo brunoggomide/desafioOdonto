@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:odonto/src/views/exercise/exercise.dart';
 import 'package:odonto/src/views/infos/info.dart';
+import 'package:odonto/src/views/profile/profile.dart';
+import 'package:odonto/src/views/students/students.dart';
 
 import '../home/home.dart';
 
@@ -21,10 +24,12 @@ class _BaseScreenState extends State<BaseScreen> {
       body: PageView(
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
-        children: [
-          const Home(),
-          const Info(),
-          Container(color: Colors.white),
+        children: const [
+          Home(),
+          Exercise(),
+          Students(),
+          Info(),
+          Profile(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -42,6 +47,9 @@ class _BaseScreenState extends State<BaseScreen> {
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.task), label: 'Exercícios'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_search), label: 'Alunos'),
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.note_add), label: 'Cadastro'),
           BottomNavigationBarItem(
