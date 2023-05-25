@@ -143,7 +143,8 @@ class _SignUpState extends State<SignUp> {
                                   email.isNotEmpty &&
                                   senha.isNotEmpty &&
                                   cod.isNotEmpty) {
-                                if (email.endsWith('@sou.unaerp.edu.br')) {
+                                if (email.endsWith('@sou.unaerp.edu.br') ||
+                                    email.endsWith('@unaerp.br')) {
                                   AuthController().criarConta(
                                     context,
                                     nome,

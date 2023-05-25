@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:odonto/src/controllers/auth/auth_controller.dart';
+import 'package:odonto/src/controllers/exercise/exercise_dao.dart';
+
+import '../../models/exercise_model.dart';
 
 class NewExercise extends StatefulWidget {
   const NewExercise({Key? key}) : super(key: key);
@@ -8,9 +13,36 @@ class NewExercise extends StatefulWidget {
 }
 
 class _NewExerciseState extends State<NewExercise> {
+  String? selectedCorrectAlternative;
+  bool isActive = true;
+  var txtEnunciado = TextEditingController();
+  var txtAlternativa_a = TextEditingController();
+  var txtAlternativa_b = TextEditingController();
+  var txtAlternativa_c = TextEditingController();
+  var txtAlternativa_d = TextEditingController();
+
+  Widget buildAlternativeCheckbox(String alternative) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Radio<String>(
+          value: alternative,
+          groupValue: selectedCorrectAlternative,
+          onChanged: (value) {
+            setState(() {
+              selectedCorrectAlternative = value;
+            });
+          },
+        ),
+        Text(alternative),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -22,6 +54,145 @@ class _NewExerciseState extends State<NewExercise> {
             fontSize: 26,
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFormField(
+                        maxLines: 3,
+                        controller: txtEnunciado,
+                        decoration: InputDecoration(
+                          labelText: 'Enunciado',
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: txtAlternativa_a,
+                        decoration: InputDecoration(
+                          labelText: 'Alternativa A',
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: txtAlternativa_b,
+                        decoration: InputDecoration(
+                          labelText: 'Alternativa B',
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: txtAlternativa_c,
+                        decoration: InputDecoration(
+                          labelText: 'Alternativa C',
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: txtAlternativa_d,
+                        decoration: InputDecoration(
+                          labelText: 'Alternativa D',
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          const Text('Alternativa Correta: '),
+                          buildAlternativeCheckbox('A'),
+                          buildAlternativeCheckbox('B'),
+                          buildAlternativeCheckbox('C'),
+                          buildAlternativeCheckbox('D'),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      SwitchListTile(
+                        title: const Text('Ativo'),
+                        value: isActive,
+                        onChanged: (value) {
+                          setState(() {
+                            isActive = value;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      SizedBox(
+                        height: 50,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                          ),
+                          onPressed: () {
+                            var e = Exercicio(
+                              AuthController().idUsuario(),
+                              txtEnunciado.text,
+                              txtAlternativa_a.text,
+                              txtAlternativa_b.text,
+                              txtAlternativa_c.text,
+                              txtAlternativa_d.text,
+                              selectedCorrectAlternative.toString(),
+                              '',
+                              '',
+                              isActive,
+                            );
+                            txtEnunciado.clear();
+                            txtAlternativa_a.clear();
+                            txtAlternativa_b.clear();
+                            txtAlternativa_c.clear();
+                            txtAlternativa_d.clear();
+                            ExerciseDao().adicionar(context, e);
+                            ;
+                          },
+                          child: const Text(
+                            "Salvar Exercício",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

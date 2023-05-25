@@ -6,6 +6,16 @@ import '../auth/sign_in.dart';
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
+  String getEmailDescription(String email) {
+    if (email.endsWith('@sou.unaerp.edu.br')) {
+      return 'Aluno';
+    } else if (email.endsWith('@unaerp.br')) {
+      return 'Professor';
+    } else {
+      return 'Usuário';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,27 +36,52 @@ class Profile extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Center(
+          Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 10,
               ),
-              child: Text(
-                'Bruno Gomide',
-                style: TextStyle(color: Colors.black, fontSize: 30),
+              child: FutureBuilder<String>(
+                future: AuthController().getNome(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    final nome = snapshot.data ?? '';
+                    return Text(
+                      nome,
+                      style: const TextStyle(color: Colors.black, fontSize: 30),
+                    );
+                  }
+                },
               ),
             ),
           ),
-          const Center(
+          Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 10,
               ),
-              child: Text(
-                'Aluno',
-                style: TextStyle(color: Colors.black, fontSize: 20),
+              child: FutureBuilder<String>(
+                future: AuthController().getEmail(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    final email = snapshot.data ?? '';
+                    final emailDescription = getEmailDescription(email);
+                    return Text(
+                      emailDescription,
+                      style: const TextStyle(color: Colors.black, fontSize: 20),
+                    );
+                  }
+                },
               ),
             ),
           ),
@@ -75,7 +110,7 @@ class Profile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 20), // Espaço entre os botões
+                    const SizedBox(width: 20),
                     Expanded(
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
