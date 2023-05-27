@@ -62,7 +62,6 @@ class _SignUpState extends State<SignUp> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         TextFormField(
-                          autofocus: true,
                           controller: txtNome,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.person),
@@ -75,7 +74,6 @@ class _SignUpState extends State<SignUp> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
-                          autofocus: true,
                           controller: txtEmail,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.email),
@@ -88,7 +86,6 @@ class _SignUpState extends State<SignUp> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
-                          autofocus: true,
                           controller: txtSenha,
                           obscureText: isObscure,
                           decoration: InputDecoration(
@@ -112,7 +109,6 @@ class _SignUpState extends State<SignUp> {
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
-                          autofocus: true,
                           inputFormatters: [codFormat],
                           controller: txtCod,
                           decoration: InputDecoration(

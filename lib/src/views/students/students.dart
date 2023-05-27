@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:odonto/src/controllers/students/students_dao.dart';
 
+import 'chartStudent.dart';
+
 class Students extends StatefulWidget {
   const Students({Key? key}) : super(key: key);
 
@@ -96,7 +98,15 @@ class _StudentsState extends State<Students> {
                                 .toLowerCase()
                                 .contains(_searchText.toLowerCase())) {
                           return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (c) {
+                                    return const ChartStudent();
+                                  },
+                                ),
+                              );
+                            },
                             child: Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               decoration: BoxDecoration(
@@ -114,7 +124,6 @@ class _StudentsState extends State<Students> {
                             ),
                           );
                         } else {
-                          // Retorna um Container vazio se o item não corresponder à pesquisa
                           return Container();
                         }
                       },

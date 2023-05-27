@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:odonto/src/controllers/auth/auth_controller.dart';
 import 'package:odonto/src/controllers/exercise/exercise_dao.dart';
-
 import '../../models/exercise_model.dart';
 
 class NewExercise extends StatefulWidget {
@@ -151,38 +149,61 @@ class _NewExerciseState extends State<NewExercise> {
                         },
                       ),
                       const SizedBox(height: 15),
-                      SizedBox(
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                              ),
+                              onPressed: () {
+                                if (txtEnunciado.text.isEmpty ||
+                                    txtAlternativa_a.text.isEmpty ||
+                                    txtAlternativa_b.text.isEmpty ||
+                                    txtAlternativa_c.text.isEmpty ||
+                                    txtAlternativa_d.text.isEmpty ||
+                                    selectedCorrectAlternative == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.red[300],
+                                      content: const Text(
+                                        'Preencha todos os campos',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      duration: const Duration(seconds: 3),
+                                    ),
+                                  );
+                                } else {
+                                  var e = Exercicio(
+                                    AuthController().idUsuario(),
+                                    txtEnunciado.text,
+                                    txtAlternativa_a.text,
+                                    txtAlternativa_b.text,
+                                    txtAlternativa_c.text,
+                                    txtAlternativa_d.text,
+                                    selectedCorrectAlternative.toString(),
+                                    '',
+                                    '',
+                                    isActive,
+                                  );
+                                  txtEnunciado.clear();
+                                  txtAlternativa_a.clear();
+                                  txtAlternativa_b.clear();
+                                  txtAlternativa_c.clear();
+                                  txtAlternativa_d.clear();
+                                  ExerciseDao().adicionar(context, e);
+                                }
+                              },
+                              child: const Text(
+                                "Salvar Exercício",
+                                style: TextStyle(fontSize: 18),
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                            var e = Exercicio(
-                              AuthController().idUsuario(),
-                              txtEnunciado.text,
-                              txtAlternativa_a.text,
-                              txtAlternativa_b.text,
-                              txtAlternativa_c.text,
-                              txtAlternativa_d.text,
-                              selectedCorrectAlternative.toString(),
-                              '',
-                              '',
-                              isActive,
-                            );
-                            txtEnunciado.clear();
-                            txtAlternativa_a.clear();
-                            txtAlternativa_b.clear();
-                            txtAlternativa_c.clear();
-                            txtAlternativa_d.clear();
-                            ExerciseDao().adicionar(context, e);
-                            ;
-                          },
-                          child: const Text(
-                            "Salvar Exercício",
-                            style: TextStyle(fontSize: 18),
                           ),
                         ),
                       ),

@@ -97,7 +97,7 @@ class _ExerciseState extends State<Exercise> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (c) {
-                                    return ShowExercise();
+                                    return ShowExercise(item: item);
                                   },
                                 ),
                               );
@@ -117,6 +117,9 @@ class _ExerciseState extends State<Exercise> {
                               ),
                             ),
                           );
+                        } else {
+                          // Retornar um widget vazio quando a condição não for atendida
+                          return Container();
                         }
                       },
                     );

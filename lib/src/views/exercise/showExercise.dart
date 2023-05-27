@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:odonto/src/models/exercise_model.dart';
+import 'package:odonto/src/views/exercise/chartExercise.dart';
+import 'package:odonto/src/views/exercise/editExercise.dart';
 
 class ShowExercise extends StatefulWidget {
   const ShowExercise({
     Key? key,
-    // required this.item,
+    required this.item,
   }) : super(key: key);
 
-  // final Exercicio item;
+  final dynamic item;
 
   @override
   State<ShowExercise> createState() => _ShowExerciseState();
@@ -37,13 +38,109 @@ class _ShowExerciseState extends State<ShowExercise> {
           },
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            TextFormField(
+              readOnly: true,
+              maxLines: 3,
+              initialValue: widget.item['enunciado'],
+              decoration: InputDecoration(
+                labelText: 'Enunciado',
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            TextFormField(
+              readOnly: true,
+              initialValue: widget.item['alternativa_a'],
+              decoration: InputDecoration(
+                labelText: 'Alternativa A',
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            TextFormField(
+              readOnly: true,
+              initialValue: widget.item['alternativa_b'],
+              decoration: InputDecoration(
+                labelText: 'Alternativa B',
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            TextFormField(
+              readOnly: true,
+              initialValue: widget.item['alternativa_c'],
+              decoration: InputDecoration(
+                labelText: 'Alternativa C',
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            TextFormField(
+              readOnly: true,
+              initialValue: widget.item['alternativa_d'],
+              decoration: InputDecoration(
+                labelText: 'Alternativa D',
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: TextFormField(
+                    readOnly: true,
+                    initialValue: widget.item['alternativa_correta'],
+                    decoration: InputDecoration(
+                      labelText: 'Alternativa Correta',
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  flex: 1,
+                  child: TextFormField(
+                    readOnly: true,
+                    initialValue: widget.item['status']
+                        ? 'Exercício Ativo'
+                        : 'Exercício Inativo',
+                    decoration: InputDecoration(
+                      labelText: 'Status',
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -56,7 +153,13 @@ class _ShowExerciseState extends State<ShowExercise> {
                           side: const BorderSide(width: 2, color: Colors.green),
                         ),
                         onPressed: () {
-                          // Adicione a ação para alterar a senha aqui
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (c) {
+                                return const ChartExercise();
+                              },
+                            ),
+                          );
                         },
                         child: const Text(
                           'Relatório',
@@ -73,7 +176,15 @@ class _ShowExerciseState extends State<ShowExercise> {
                           ),
                           side: const BorderSide(width: 2, color: Colors.blue),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: ((c) {
+                                return EditExercise(item: widget.item);
+                              }),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'Editar',
                           style: TextStyle(fontSize: 18, color: Colors.blue),
@@ -84,8 +195,8 @@ class _ShowExerciseState extends State<ShowExercise> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

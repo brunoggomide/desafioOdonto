@@ -15,10 +15,10 @@ class ExerciseDao {
         .whenComplete(() => Navigator.of(context).pop());
   }
 
-  void atualizar(context, id, Exercicio ex) {
+  void atualizar(context, Exercicio ex) {
     FirebaseFirestore.instance
         .collection('tarefas')
-        .doc(id)
+        .doc(ex.uid)
         .update(ex.toJson())
         .then((value) => sucesso(context, 'Tarefa atualizada com sucesso'))
         .catchError(

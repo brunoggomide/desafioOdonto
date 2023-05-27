@@ -59,7 +59,6 @@ class _SignInState extends State<SignIn> {
                   children: [
                     //EMAIL
                     TextFormField(
-                      autofocus: true,
                       controller: txtEmail,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.email),
@@ -73,7 +72,6 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(height: 15),
                     // SENHA
                     TextFormField(
-                      autofocus: true,
                       controller: txtSenha,
                       obscureText: isObscure,
                       decoration: InputDecoration(
