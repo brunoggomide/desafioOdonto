@@ -1,12 +1,20 @@
 # Glossário de Oclusão
 
-Este projeto foi desenvolvido como parte de um trabalho acadêmico da 6ª etapa do curso de Engenharia de Software da Unaerp pelo aluno Bruno Gabriel Gomide.
+O Glossário de Oclusão é um projeto desenvolvido como desafio da sexta etapa do curso de Engenharia de Software da UNAERP. Trata-se de uma ferramenta de ensino que visa apoiar os cursos de Odontologia oferecidos pela UNAERP.
 
-O Glossário de Oclusão é um aplicativo mobile desenvolvido em Flutter (versão 2.10.5) para oferecer uma ferramenta de busca e inclusão de termos da Oclusão Dentária. O aplicativo é direcionado para estudantes e professores do curso de Odontologia da Unaerp, a fim de aprimorar seus conhecimentos sobre o tema, disponibilizando uma vasta gama de termos técnicos e seus respectivos significados, além de permitir que os professores adicionem exercícios para os alunos resolverem.
+O aplicativo permite que os alunos busquem por termos relacionados à área de oclusão e realizem exercícios para aprimorar seus conhecimentos. Além disso, o Glossário de Oclusão oferece recursos para os professores, permitindo que eles adicionem exercícios e acompanhem o desempenho dos alunos e dos próprios exercícios.
+
+Principais recursos do aplicativo:
+
+Busca de termos relacionados à oclusão odontológica;
+Resolução de exercícios para reforçar o aprendizado;
+Adição de exercícios por parte dos professores;
+Acompanhamento do desempenho dos alunos e dos exercícios.
+O Glossário de Oclusão é uma ferramenta útil tanto para os alunos que desejam aprofundar seus conhecimentos em oclusão, quanto para os professores que desejam melhorar o processo de ensino e acompanhar o progresso dos estudantes. Através da tecnologia do Flutter, o aplicativo oferece uma experiência moderna e interativa para os usuários.
 
 ## Requisito para execução
 
-Esse aplicativo foi desenvolvido na versão 2.10.5 do Flutter.
+Esse aplicativo foi desenvolvido na versão 3.7.12 do Flutter.
 
 ### Alunos envolvidos
 
