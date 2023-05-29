@@ -10,7 +10,6 @@ Busca de termos relacionados à oclusão odontológica;
 Resolução de exercícios para reforçar o aprendizado;
 Adição de exercícios por parte dos professores;
 Acompanhamento do desempenho dos alunos e dos exercícios.
-
 O Glossário de Oclusão é uma ferramenta útil tanto para os alunos que desejam aprofundar seus conhecimentos em oclusão, quanto para os professores que desejam melhorar o processo de ensino e acompanhar o progresso dos estudantes. Através da tecnologia do Flutter, o aplicativo oferece uma experiência moderna e interativa para os usuários.
 
 ## Requisito para execução
