@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odonto/src/controllers/auth/auth_controller.dart';
+import 'package:odonto/src/views/infos/info.dart';
 
 import '../auth/sign_in.dart';
 
@@ -31,6 +32,22 @@ class Profile extends StatelessWidget {
             fontSize: 26,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            color: Colors.black,
+            iconSize: 26,
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (c) {
+                    return const Info();
+                  },
+                ),
+              );
+            },
+          ),
+        ],
       ),
 
       body: Column(

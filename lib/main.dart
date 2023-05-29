@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:odonto/src/views/auth/sign_in.dart';
-import 'package:odonto/src/views/base/base_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {

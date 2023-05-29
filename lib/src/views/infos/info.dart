@@ -6,7 +6,7 @@ class Info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //App Bar
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -18,8 +18,14 @@ class Info extends StatelessWidget {
             fontSize: 26,
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
-
       body: Column(
         children: [
           const Padding(
@@ -38,9 +44,9 @@ class Info extends StatelessWidget {
               child: Container(
                 alignment: Alignment.bottomLeft,
                 child: const Text(
-                  'Desenvolvido por: Bruno Gomide\nApoio de: Rodrigo Plotze, Carlos Alves e Fabiano\nE-mail para contato: bruno.gomide@sou.unaerp.edu.br',
+                  'Desenvolvido por: Bruno Gomide\nApoio de: Rodrigo Plotze, Carlos Alves e Fabiano Santos\nE-mail para contato: bruno.gomide@sou.unaerp.edu.br',
                   textAlign: TextAlign.left,
-                  style: TextStyle(height: 1.5, fontSize: 12),
+                  style: TextStyle(height: 1.5, fontSize: 14),
                 ),
               ),
             ),

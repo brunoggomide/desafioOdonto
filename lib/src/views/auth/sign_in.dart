@@ -36,7 +36,7 @@ class _SignInState extends State<SignIn> {
                       'Glossário de Oclusão',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 35,
+                        fontSize: 32,
                       ),
                     ),
                   ),

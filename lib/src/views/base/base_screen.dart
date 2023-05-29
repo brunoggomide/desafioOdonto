@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:odonto/src/views/exercise/exercise.dart';
-import 'package:odonto/src/views/infos/info.dart';
 import 'package:odonto/src/views/profile/profile.dart';
 import 'package:odonto/src/views/students/students.dart';
 
@@ -36,13 +35,11 @@ class _BaseScreenState extends State<BaseScreen> {
                     Home(),
                     Exercise(),
                     Students(),
-                    Info(),
                     Profile(),
                   ]
                 : const [
                     Home(),
                     Tasks(),
-                    Info(),
                     Profile(),
                   ],
           ),
@@ -67,8 +64,6 @@ class _BaseScreenState extends State<BaseScreen> {
                     BottomNavigationBarItem(
                         icon: Icon(Icons.person_search), label: 'Alunos'),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.info_outline), label: 'Sobre'),
-                    BottomNavigationBarItem(
                         icon: Icon(Icons.person_outline), label: 'Perfil'),
                   ]
                 : const [
@@ -76,8 +71,6 @@ class _BaseScreenState extends State<BaseScreen> {
                         icon: Icon(Icons.home_outlined), label: 'Home'),
                     BottomNavigationBarItem(
                         icon: Icon(Icons.task), label: 'Tarefas'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.info_outline), label: 'Sobre'),
                     BottomNavigationBarItem(
                         icon: Icon(Icons.person_outline), label: 'Perfil'),
                   ],
