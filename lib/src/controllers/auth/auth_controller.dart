@@ -22,7 +22,7 @@ class AuthController {
         'codigo': cod,
       });
 
-      sucesso('context', 'Verifique seu e-mail para ativar seu cadastro');
+      sucesso(context, 'Verifique seu e-mail para ativar seu cadastro');
       Navigator.of(context).pop();
     }).catchError((e) {
       switch (e.code) {
@@ -98,7 +98,7 @@ class AuthController {
   //Logout
   logout(context) {
     FirebaseAuth.instance.signOut();
-    Navigator.of(context).push(
+    Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (c) {
           return SignIn();

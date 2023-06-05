@@ -88,6 +88,7 @@ class _ExerciseState extends State<Exercise> {
                       itemCount: dados.size,
                       itemBuilder: (context, index) {
                         dynamic item = dados.docs[index].data();
+                        String id = dados.docs[index].id;
                         String enunciado = item['enunciado'];
                         if (enunciado
                             .toLowerCase()
@@ -97,7 +98,10 @@ class _ExerciseState extends State<Exercise> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (c) {
-                                    return ShowExercise(item: item);
+                                    return ShowExercise(
+                                      item: item,
+                                      id: id,
+                                    );
                                   },
                                 ),
                               );

@@ -187,7 +187,7 @@ class _NewExerciseState extends State<NewExercise> {
                                     txtAlternativa_c.text,
                                     txtAlternativa_d.text,
                                     selectedCorrectAlternative.toString(),
-                                    '',
+                                    '00',
                                     '',
                                     isActive,
                                   );

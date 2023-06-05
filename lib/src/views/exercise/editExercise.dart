@@ -8,9 +8,11 @@ class EditExercise extends StatefulWidget {
   const EditExercise({
     Key? key,
     required this.item,
+    required this.id,
   }) : super(key: key);
 
   final dynamic item;
+  final String id;
 
   @override
   State<EditExercise> createState() => _EditExerciseState();
@@ -248,7 +250,8 @@ class _EditExerciseState extends State<EditExercise> {
                                       txtAlternativa_b.clear();
                                       txtAlternativa_c.clear();
                                       txtAlternativa_d.clear();
-                                      ExerciseDao().atualizar(context, e);
+                                      ExerciseDao()
+                                          .atualizar(context, widget.id, e);
                                     }
                                   },
                                   child: const Text(

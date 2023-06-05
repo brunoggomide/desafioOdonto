@@ -102,7 +102,9 @@ class _StudentsState extends State<Students> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (c) {
-                                    return const ChartStudent();
+                                    return ChartStudent(
+                                      item: item,
+                                    );
                                   },
                                 ),
                               );

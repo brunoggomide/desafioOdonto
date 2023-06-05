@@ -6,9 +6,11 @@ class ShowExercise extends StatefulWidget {
   const ShowExercise({
     Key? key,
     required this.item,
+    required this.id,
   }) : super(key: key);
 
   final dynamic item;
+  final String id;
 
   @override
   State<ShowExercise> createState() => _ShowExerciseState();
@@ -156,7 +158,9 @@ class _ShowExerciseState extends State<ShowExercise> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (c) {
-                                return const ChartExercise();
+                                return ChartExercise(
+                                  id: widget.id,
+                                );
                               },
                             ),
                           );
@@ -180,7 +184,10 @@ class _ShowExerciseState extends State<ShowExercise> {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: ((c) {
-                                return EditExercise(item: widget.item);
+                                return EditExercise(
+                                  item: widget.item,
+                                  id: widget.id,
+                                );
                               }),
                             ),
                           );

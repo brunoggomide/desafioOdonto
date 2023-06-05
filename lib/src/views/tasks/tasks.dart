@@ -12,7 +12,13 @@ class Tasks extends StatefulWidget {
 }
 
 class _TasksState extends State<Tasks> {
-  bool isAvailable = false;
+  bool isAvailable = true;
+
+  void _updateIsAvailable() {
+    setState(() {
+      isAvailable = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,9 @@ class _TasksState extends State<Tasks> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (c) {
-                          return const Answers();
+                          return Answers(
+                            onSubmit: _updateIsAvailable,
+                          );
                         },
                       ),
                     );

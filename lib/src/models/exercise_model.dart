@@ -25,7 +25,7 @@ class Exercicio {
       this.status);
 
   Map<String, dynamic> toJson() {
-    return <String, dynamic>{
+    final Map<String, dynamic> json = {
       'uid': uid,
       'enunciado': enunciado,
       'alternativa_a': alternativa_a,
@@ -33,10 +33,15 @@ class Exercicio {
       'alternativa_c': alternativa_c,
       'alternativa_d': alternativa_d,
       'alternativa_correta': alternativa_correta,
-      'criado_em': FieldValue.serverTimestamp(),
       'atualizado_em': FieldValue.serverTimestamp(),
       'status': status,
     };
+
+    if (criado_em != null && criado_em.isNotEmpty) {
+      json['criado_em'] = FieldValue.serverTimestamp();
+    }
+
+    return json;
   }
 
   factory Exercicio.fromJson(Map<String, dynamic> json) {
