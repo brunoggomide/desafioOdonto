@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:odonto/src/views/auth/components/custom_text_field.dart';
 import 'package:odonto/src/views/auth/components/forgot_password.dart';
 import 'package:odonto/src/views/auth/sign_in.dart';
 
@@ -10,7 +9,7 @@ class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 void main() {
   late MockNavigatorObserver mockObserver;
   final signInRoute = MaterialPageRoute(builder: (c) {
-    return const SignIn();
+    return SignIn();
   });
 
   setUp(() {
@@ -30,7 +29,7 @@ void main() {
     );
 
     // verifica os campos de e-mail e botão de recuperar
-    expect(find.byType(CustomTextField), findsOneWidget);
+    expect(find.byType(), findsOneWidget);
     expect(find.widgetWithText(ElevatedButton, 'Recuperar'), findsOneWidget);
   });
 

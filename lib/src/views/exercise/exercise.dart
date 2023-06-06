@@ -82,13 +82,16 @@ class _ExerciseState extends State<Exercise> {
                 } else {
                   final dados = snapshot.requireData;
                   if (dados.size > 0) {
+                    List<QueryDocumentSnapshot> sortedData = dados.docs;
+                    sortedData.sort(
+                        (a, b) => a['enunciado'].compareTo(b['enunciado']));
                     return ListView.builder(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       physics: const BouncingScrollPhysics(),
-                      itemCount: dados.size,
+                      itemCount: sortedData.length,
                       itemBuilder: (context, index) {
-                        dynamic item = dados.docs[index].data();
-                        String id = dados.docs[index].id;
+                        dynamic item = sortedData[index].data();
+                        String id = sortedData[index].id;
                         String enunciado = item['enunciado'];
                         if (enunciado
                             .toLowerCase()

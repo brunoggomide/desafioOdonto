@@ -81,12 +81,16 @@ class _StudentsState extends State<Students> {
                 } else {
                   final dados = snapshot.requireData;
                   if (dados.size > 0) {
+                    // Ordenar a lista por ordem alfabética de A-Z
+                    List<QueryDocumentSnapshot> sortedData = dados.docs;
+                    sortedData.sort((a, b) => a['nome'].compareTo(b['nome']));
+
                     return ListView.builder(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       physics: const BouncingScrollPhysics(),
-                      itemCount: dados.size,
+                      itemCount: sortedData.length,
                       itemBuilder: (context, index) {
-                        dynamic item = dados.docs[index].data();
+                        dynamic item = sortedData[index].data();
                         String nome = item['nome'];
                         String codigo = item['codigo'];
 

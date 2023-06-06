@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:odonto/src/views/auth/components/custom_text_field.dart';
 import 'package:odonto/src/views/auth/components/forgot_password.dart';
 import 'package:odonto/src/views/auth/sign_in.dart';
 import 'package:odonto/src/views/auth/sign_up.dart';
@@ -32,7 +31,7 @@ void main() {
   testWidgets('Testa se campos são renderizados', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: SignIn()));
 
-    expect(find.byType(CustomTextField), findsNWidgets(2));
+    expect(find.byType(), findsNWidgets(2));
     expect(find.text('Email'), findsOneWidget);
     expect(find.text('Senha'), findsOneWidget);
     expect(find.text('Entrar'), findsOneWidget);
@@ -44,7 +43,7 @@ void main() {
   testWidgets('Testa navegação para a tela de Sign Up',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-        MaterialApp(home: const SignIn(), navigatorObservers: [mockObserver]));
+        MaterialApp(home: SignIn(), navigatorObservers: [mockObserver]));
 
     // Toca no botão "Criar conta"
     await tester.tap(find.text('Criar conta'));
@@ -58,7 +57,7 @@ void main() {
   testWidgets('Testa navegação para a tela principal',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-        MaterialApp(home: const SignIn(), navigatorObservers: [mockObserver]));
+        MaterialApp(home: SignIn(), navigatorObservers: [mockObserver]));
 
     // Toca no botão "Entrar"
     await tester.tap(find.text('Entrar'));
@@ -72,7 +71,7 @@ void main() {
   testWidgets('Testa navegação para a tela de recuperar senha',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-        MaterialApp(home: const SignIn(), navigatorObservers: [mockObserver]));
+        MaterialApp(home: SignIn(), navigatorObservers: [mockObserver]));
 
     // Toca no botão "Entrar"
     await tester.tap(find.text('Esqueceu a senha?'));

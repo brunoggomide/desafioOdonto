@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:odonto/src/views/auth/components/custom_text_field.dart';
 import 'package:odonto/src/views/auth/sign_in.dart';
 import 'package:odonto/src/views/auth/sign_up.dart';
 
@@ -11,7 +10,7 @@ void main() {
   late MockNavigatorObserver mockObserver;
 
   final signInRoute = MaterialPageRoute(builder: (c) {
-    return const SignIn();
+    return SignIn();
   });
 
   setUp(() {
@@ -26,7 +25,7 @@ void main() {
     expect(find.text('Cadastro'), findsOneWidget);
 
     // Verifica se os campos do formulário estão sendo renderizados corretamente
-    expect(find.byType(CustomTextField), findsNWidgets(4));
+    expect(find.byType(), findsNWidgets(4));
     expect(find.text('Nome'), findsOneWidget);
     expect(find.text('E-mail'), findsOneWidget);
     expect(find.text('Senha'), findsOneWidget);

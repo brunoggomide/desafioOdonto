@@ -31,28 +31,38 @@ class _TasksState extends State<Tasks> {
       ),
       body: Center(
         child: isAvailable
-            ? SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18))),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (c) {
-                          return Answers(
-                            onSubmit: _updateIsAvailable,
-                          );
-                        },
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Começar',
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Você possui exercícios disponíveis',
                     style: TextStyle(fontSize: 18),
                   ),
-                ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18))),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (c) {
+                              return Answers(
+                                onSubmit: _updateIsAvailable,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Começar',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ],
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +72,7 @@ class _TasksState extends State<Tasks> {
                     style: TextStyle(fontSize: 18),
                   ),
                   const Text(
-                    'Próximo exercício dia 18/06/2023',
+                    'Próximo exercício dia xx/xx/xxxx',
                     style: TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 16),
