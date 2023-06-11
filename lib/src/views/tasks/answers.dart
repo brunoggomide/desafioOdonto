@@ -5,6 +5,7 @@ import 'package:odonto/src/controllers/exercise/exercise_dao.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:odonto/src/controllers/tasks/tasks_dao.dart';
 import 'package:odonto/src/models/answers_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Answers extends StatefulWidget {
   const Answers({Key? key, this.onSubmit}) : super(key: key);
@@ -18,8 +19,28 @@ class Answers extends StatefulWidget {
 class _AnswersState extends State<Answers> {
   String? answer1;
   String? answer2;
-  int randomIndex1 = 0;
-  int randomIndex2 = 0;
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> availableExercises = [];
+  int currentIndex = 0;
+  int x = 0;
+  late SharedPreferences _prefs;
+  late String _prefsKey = 'x';
+
+  @override
+  void initState() {
+    super.initState();
+    _initPreferences();
+  }
+
+  Future<void> _initPreferences() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      x = _prefs.getInt(_prefsKey) ?? 0;
+    });
+  }
+
+  Future<void> _saveX() async {
+    await _prefs.setInt(_prefsKey, x);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +59,7 @@ class _AnswersState extends State<Answers> {
           ),
         ),
       ),
-      body: StreamBuilder<QuerySnapshot>(
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: ExerciseDao().listar().snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -47,27 +68,39 @@ class _AnswersState extends State<Answers> {
             );
           }
 
-          var exercicios = snapshot.data!.docs;
-          int totalExercicios = exercicios.length;
+          final exercises = snapshot.requireData.docs;
 
-          // Filtrar exercícios com status verdadeiro
-          var exerciciosComStatusVerdadeiro = exercicios
+          availableExercises = exercises
               .where((exercicio) => exercicio['status'] == true)
               .toList();
 
-          if (exerciciosComStatusVerdadeiro.isEmpty) {
+          if (availableExercises.isEmpty) {
             return const Center(
               child: Text('Nenhum exercício disponível no momento.'),
             );
           }
 
-          if (randomIndex1 == 0 && randomIndex2 == 0) {
-            randomIndex1 =
-                Random().nextInt(exerciciosComStatusVerdadeiro.length);
-            do {
-              randomIndex2 =
-                  Random().nextInt(exerciciosComStatusVerdadeiro.length);
-            } while (randomIndex2 == randomIndex1);
+          final currentUserAnsweredExercises = exercises
+              .where((exercicio) =>
+                  exercicio['uid'] == AuthController().idUsuario())
+              .toList();
+
+          if (currentUserAnsweredExercises.isNotEmpty) {
+            final lastAnswerDate =
+                currentUserAnsweredExercises.last['respondido_em'].toDate();
+            final currentDate = DateTime.now();
+            final difference = currentDate.difference(lastAnswerDate);
+            final daysSinceLastAnswer = difference.inMinutes;
+
+            if (daysSinceLastAnswer < 2) {
+              return const Center(
+                child: Text('Nenhum exercício disponível no momento.'),
+              );
+            }
+          }
+
+          if (x >= availableExercises.length) {
+            x = 0;
           }
 
           return SingleChildScrollView(
@@ -77,12 +110,12 @@ class _AnswersState extends State<Answers> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '01 - ${exerciciosComStatusVerdadeiro[randomIndex1]['enunciado']}',
+                    '01 - ${availableExercises[currentIndex + x]['enunciado']}',
                     style: const TextStyle(fontSize: 18),
                   ),
                   RadioListTile(
                     title: Text(
-                        'A) ${exerciciosComStatusVerdadeiro[randomIndex1]['alternativa_a']}'),
+                        'A) ${availableExercises[currentIndex + x]['alternativa_a']}'),
                     value: 'A',
                     groupValue: answer1,
                     onChanged: (value) {
@@ -93,7 +126,7 @@ class _AnswersState extends State<Answers> {
                   ),
                   RadioListTile(
                     title: Text(
-                        'B) ${exerciciosComStatusVerdadeiro[randomIndex1]['alternativa_b']}'),
+                        'B) ${availableExercises[currentIndex + x]['alternativa_b']}'),
                     value: 'B',
                     groupValue: answer1,
                     onChanged: (value) {
@@ -104,7 +137,7 @@ class _AnswersState extends State<Answers> {
                   ),
                   RadioListTile(
                     title: Text(
-                        'C) ${exerciciosComStatusVerdadeiro[randomIndex1]['alternativa_c']}'),
+                        'C) ${availableExercises[currentIndex + x]['alternativa_c']}'),
                     value: 'C',
                     groupValue: answer1,
                     onChanged: (value) {
@@ -115,7 +148,7 @@ class _AnswersState extends State<Answers> {
                   ),
                   RadioListTile(
                     title: Text(
-                        'D) ${exerciciosComStatusVerdadeiro[randomIndex1]['alternativa_d']}'),
+                        'D) ${availableExercises[currentIndex + x]['alternativa_d']}'),
                     value: 'D',
                     groupValue: answer1,
                     onChanged: (value) {
@@ -130,12 +163,12 @@ class _AnswersState extends State<Answers> {
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    '02 - ${exerciciosComStatusVerdadeiro[randomIndex2]['enunciado']}',
+                    '02 - ${availableExercises[currentIndex + x + 1]['enunciado']}',
                     style: const TextStyle(fontSize: 18),
                   ),
                   RadioListTile(
                     title: Text(
-                        'A) ${exerciciosComStatusVerdadeiro[randomIndex2]['alternativa_a']}'),
+                        'A) ${availableExercises[currentIndex + x + 1]['alternativa_a']}'),
                     value: 'A',
                     groupValue: answer2,
                     onChanged: (value) {
@@ -146,7 +179,7 @@ class _AnswersState extends State<Answers> {
                   ),
                   RadioListTile(
                     title: Text(
-                        'B) ${exerciciosComStatusVerdadeiro[randomIndex2]['alternativa_b']}'),
+                        'B) ${availableExercises[currentIndex + x + 1]['alternativa_b']}'),
                     value: 'B',
                     groupValue: answer2,
                     onChanged: (value) {
@@ -157,7 +190,7 @@ class _AnswersState extends State<Answers> {
                   ),
                   RadioListTile(
                     title: Text(
-                        'C) ${exerciciosComStatusVerdadeiro[randomIndex2]['alternativa_c']}'),
+                        'C) ${availableExercises[currentIndex + x + 1]['alternativa_c']}'),
                     value: 'C',
                     groupValue: answer2,
                     onChanged: (value) {
@@ -168,7 +201,7 @@ class _AnswersState extends State<Answers> {
                   ),
                   RadioListTile(
                     title: Text(
-                        'D) ${exerciciosComStatusVerdadeiro[randomIndex2]['alternativa_d']}'),
+                        'D) ${availableExercises[currentIndex + x + 1]['alternativa_d']}'),
                     value: 'D',
                     groupValue: answer2,
                     onChanged: (value) {
@@ -202,18 +235,20 @@ class _AnswersState extends State<Answers> {
                         } else {
                           var answer1Data = AnswersModel(
                             AuthController().idUsuario(),
-                            exerciciosComStatusVerdadeiro[randomIndex1].id,
+                            availableExercises[currentIndex + x]
+                                .id, // Utilize o campo 'id' para obter o ID
                             answer1!,
-                            exerciciosComStatusVerdadeiro[randomIndex1]
+                            availableExercises[currentIndex + x]
                                 ['alternativa_correta'],
                             '',
                           );
 
                           var answer2Data = AnswersModel(
                             AuthController().idUsuario(),
-                            exerciciosComStatusVerdadeiro[randomIndex2].id,
+                            availableExercises[currentIndex + x + 1]
+                                .id, // Utilize o campo 'id' para obter o ID
                             answer2!,
-                            exerciciosComStatusVerdadeiro[randomIndex2]
+                            availableExercises[currentIndex + x + 1]
                                 ['alternativa_correta'],
                             '',
                           );
@@ -224,8 +259,12 @@ class _AnswersState extends State<Answers> {
                               await TasksDao().adicionar(context, answer2Data);
 
                           if (success1 && success2) {
-                            Navigator.of(context).pop();
+                            setState(() {
+                              x += 2;
+                            });
+                            await _saveX();
                             widget.onSubmit?.call();
+                            Navigator.of(context).pop();
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

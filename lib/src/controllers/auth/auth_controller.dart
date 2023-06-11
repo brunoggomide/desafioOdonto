@@ -52,22 +52,23 @@ class AuthController {
           }),
         ),
       );
+    })
+        // } else {
+        //   erro(context, 'O endereço de e-mail não foi confirmado.');
+        // }
+        // })
+        .catchError((e) {
+      switch (e.code) {
+        case 'user-not-found':
+          erro(context, 'Usuário não encontrado.');
+          break;
+        case 'wrong-password':
+          erro(context, 'Senha incorreta.');
+          break;
+        default:
+          erro(context, 'ERRO: ${e.code.toString()}');
+      }
     });
-    // } else {
-    //   erro(context, 'O endereço de e-mail não foi confirmado.');
-    // }
-    // }).catchError((e) {
-    //   switch (e.code) {
-    //     case 'user-not-found':
-    //       erro(context, 'Usuário não encontrado.');
-    //       break;
-    //     case 'wrong-password':
-    //       erro(context, 'Senha incorreta.');
-    //       break;
-    //     default:
-    //       erro(context, 'ERRO: ${e.code.toString()}');
-    //   }
-    // });
   }
 
   //Recuperar senha
