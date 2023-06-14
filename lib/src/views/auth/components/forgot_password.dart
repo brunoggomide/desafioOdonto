@@ -82,6 +82,7 @@ class ForgotPassword extends StatelessWidget {
                     if (email.isNotEmpty) {
                       if (email.endsWith('@sou.unaerp.edu.br')) {
                         AuthController().esqueceuSenha(context, email);
+                        Navigator.of(context).pop();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

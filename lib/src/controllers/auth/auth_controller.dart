@@ -80,7 +80,6 @@ class AuthController {
       )
           .then((res) {
         sucesso(context, 'E-mail enviado com sucesso.');
-        Navigator.of(context).pop();
       }).catchError((e) {
         switch (e.code) {
           case 'invalid-email':

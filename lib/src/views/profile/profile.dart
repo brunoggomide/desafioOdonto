@@ -118,8 +118,9 @@ class Profile extends StatelessWidget {
                           ),
                           side: const BorderSide(width: 2, color: Colors.blue),
                         ),
-                        onPressed: () {
-                          // Adicione a ação para alterar a senha aqui
+                        onPressed: () async {
+                          String email = await AuthController().getEmail();
+                          AuthController().esqueceuSenha(context, email);
                         },
                         child: const Text(
                           'Alterar senha',

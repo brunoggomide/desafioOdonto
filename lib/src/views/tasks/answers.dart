@@ -162,54 +162,59 @@ class _AnswersState extends State<Answers> {
                     thickness: 2,
                   ),
                   const SizedBox(height: 15),
-                  Text(
-                    '02 - ${availableExercises[currentIndex + x + 1]['enunciado']}',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  RadioListTile(
-                    title: Text(
-                        'A) ${availableExercises[currentIndex + x + 1]['alternativa_a']}'),
-                    value: 'A',
-                    groupValue: answer2,
-                    onChanged: (value) {
-                      setState(() {
-                        answer2 = value as String?;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(
-                        'B) ${availableExercises[currentIndex + x + 1]['alternativa_b']}'),
-                    value: 'B',
-                    groupValue: answer2,
-                    onChanged: (value) {
-                      setState(() {
-                        answer2 = value as String?;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(
-                        'C) ${availableExercises[currentIndex + x + 1]['alternativa_c']}'),
-                    value: 'C',
-                    groupValue: answer2,
-                    onChanged: (value) {
-                      setState(() {
-                        answer2 = value as String?;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(
-                        'D) ${availableExercises[currentIndex + x + 1]['alternativa_d']}'),
-                    value: 'D',
-                    groupValue: answer2,
-                    onChanged: (value) {
-                      setState(() {
-                        answer2 = value as String?;
-                      });
-                    },
-                  ),
+                  if (currentIndex + x + 1 < availableExercises.length)
+                    Text(
+                      '02 - ${availableExercises[currentIndex + x + 1]['enunciado']}',
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  if (currentIndex + x + 1 < availableExercises.length)
+                    RadioListTile(
+                      title: Text(
+                          'A) ${availableExercises[currentIndex + x + 1]['alternativa_a']}'),
+                      value: 'A',
+                      groupValue: answer2,
+                      onChanged: (value) {
+                        setState(() {
+                          answer2 = value as String?;
+                        });
+                      },
+                    ),
+                  if (currentIndex + x + 1 < availableExercises.length)
+                    RadioListTile(
+                      title: Text(
+                          'B) ${availableExercises[currentIndex + x + 1]['alternativa_b']}'),
+                      value: 'B',
+                      groupValue: answer2,
+                      onChanged: (value) {
+                        setState(() {
+                          answer2 = value as String?;
+                        });
+                      },
+                    ),
+                  if (currentIndex + x + 1 < availableExercises.length)
+                    RadioListTile(
+                      title: Text(
+                          'C) ${availableExercises[currentIndex + x + 1]['alternativa_c']}'),
+                      value: 'C',
+                      groupValue: answer2,
+                      onChanged: (value) {
+                        setState(() {
+                          answer2 = value as String?;
+                        });
+                      },
+                    ),
+                  if (currentIndex + x + 1 < availableExercises.length)
+                    RadioListTile(
+                      title: Text(
+                          'D) ${availableExercises[currentIndex + x + 1]['alternativa_d']}'),
+                      value: 'D',
+                      groupValue: answer2,
+                      onChanged: (value) {
+                        setState(() {
+                          answer2 = value as String?;
+                        });
+                      },
+                    ),
                   const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
